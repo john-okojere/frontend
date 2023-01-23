@@ -1,0 +1,79 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: 0;
+}
+
+body{
+    background-color: rgb(94, 17, 167);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    padding: 5vw;
+}
+h4{
+    color: goldenrod;
+    margin: 10px;
+    letter-spacing: 5px;
+}
+.rect{
+
+    height: 3px;
+    width: 200px;
+    background-color: goldenrod;
+    margin: auto;
+}
+h1{
+    font-weight: 600;
+    margin: 10px;
+    letter-spacing: 5px;
+    font-size: xxx-large;
+}
+.items{
+    display: flex;
+    margin: 30px;
+    float: left;
+}
+ul{
+    list-style: none;
+}
+.image-box{
+    width: 100%;
+    height: 200px;
+    background-position: center;
+    background-size: cover;
+}
+li{
+    text-align: left;
+    margin: 10px;
+    padding: 20px;
+    background-color: blueviolet;
+}
+li h2{
+    margin: 20px 0px;
+    color:goldenrod;
+    font-weight: 500;
+    font-size: xx-large;
+}
+li button{
+    background-color: goldenrod;
+    padding: 10px;
+    border: none;
+    margin: 10px 0;
+
+}
+a{
+    text-decoration: none;
+    cursor: pointer;
+}
+u{
+    color: white;
+    text-decoration: underline solid goldenrod 3px;
+    font-weight: bolder;
+}
+p{
+    font-style: italic;
+}

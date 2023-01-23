@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/fontawesome.min.css" integrity="sha512-giQeaPns4lQTBMRpOOHsYnGw1tGVzbAIHUyHRgn7+6FmiEgGGjaG0T2LZJmAPMzRCl+Cug0ItQ2xDZpTmEc+CQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/brands.min.css" integrity="sha512-G/T7HQJXSeNV7mKMXeJKlYNJ0jrs8RsWzYG7rVACye+qrcUhEAYKYzaa+VFy6eFzM2+/JT1Q+eqBbZFSHmJQew==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/regular.min.css" integrity="sha512-k2UAKyvfA7Xd/6FrOv5SG4Qr9h4p2oaeshXF99WO3zIpCsgTJ3YZELDK0gHdlJE5ls+Mbd5HL50b458z3meB/Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/solid.min.css" integrity="sha512-6mc0R607di/biCutMUtU9K7NtNewiGQzrvWX4bWTeqmljZdJrwYvKJtnhgR+Ryvj+NRJ8+NnnCM/biGqMe/iRA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav id="nav">
+        <h1 id="nav-header">Fed<span id="nav-header2">Ex.</span></h1>
+        <div id="nav-center">
+            <ul id="nav-tab">
+                <li class="nav-link"><a href="#" class="nav-link-btn" id="nav-link-1" onmouseout="this.size=1;" onmouseover="opentab(1)">Shipping <i class="fa fa-chevron-down"></a></i>
+                   <div class="nav-link-items"id="items-1"> 
+                    <div class="nav-link-item"><a href="#">Item 1</a></div>
+                    <hr>
+                    <div class="nav-link-item"><a href="#">Item 2</a></div>
+                    <hr>
+                    <div class="nav-link-item"><a href="#">Item 3</a></div>
+                </div>
+                </li>
+                <li class="nav-link"><a href="#" class="nav-link-btn" id="nav-link-2" onmouseout="this.size=1;" onmouseover="opentab(2)">Tracking <i class="fa fa-chevron-down"></i></a>
+                   <div class="nav-link-items"id="items-2"> 
+                    <div class="nav-link-item"><a href="#">Item 1</a></div>
+                    <hr>
+                    <div class="nav-link-item"><a href="#">Item 2</a></div>
+                    <hr>
+                    <div class="nav-link-item"><a href="#">Item 3</a></div>
+                </div>
+                </li>
+                <li class="nav-link"><a href="#" class="nav-link-btn" id="nav-link-3" onmouseout="this.size=2;" onmouseover="opentab(3)">Design & Print <i class="fa fa-chevron-down"></i></a>
+                   <div class="nav-link-items"id="items-3"> 
+                    <div class="nav-link-item"><a href="#">Item 1</a></div>
+                    <hr>
+                    <div class="nav-link-item"><a href="#">Item 2</a></div>
+                    <hr>
+                    <div class="nav-link-item"><a href="#">Item 3</a></div>
+                </div>
+                </li>
+                <li class="nav-link"><a href="#" class="nav-link-btn" id="nav-link-4" onmouseout="this.size=1;" onmouseover="opentab(4)">Location <i class="fa fa-chevron-down"></i></a>
+                   <div class="nav-link-items"id="items-4"> 
+                    <div class="nav-link-item"><a href="#">Item 1</a></div>
+                    <hr>
+                    <div class="nav-link-item"><a href="#">Item 2</a></div>
+                    <hr>
+                    <div class="nav-link-item"><a href="#">Item 3</a></div>
+                </div>
+                </li>
+                <li class="nav-link"><a href="#" class="nav-link-btn" id="nav-link-5" onmouseout="this.size=1;" onmouseover="opentab(5)">Support <i class="fa fa-chevron-down"></i></a>
+                   <div class="nav-link-items"id="items-5"> 
+                    <div class="nav-link-item"><a href="#">Item 1</a></div>
+                    <hr>
+                    <div class="nav-link-item"><a href="#">Item 2</a></div>
+                    <hr>
+                    <div class="nav-link-item"><a href="#">Item 3</a></div>
+                    </div>
+                </li>
+            </ul>
+        </div>     
+        <div id="nav-side">
+            <div class="nav-link sign"><a href="#" onclick="signin()"><span id="sign-text">Sign In or Log In</span><i class="fa fa-user"></i></a></div>
+            <input type="text" id="search-input" placeholder="Search...">
+            <div class="nav-link nav-search" style="font-size: x-large; align-self: center;"><a href="#" id="search-input-btn" onclick="opensearch()"><i class="fa fa-search"></i></a></div>
+        </div>   
+    </nav>
+    <main>
+        <div class="rect"></div>
+        <div style="width: 60vw; height: 70vh;z-index: 1;">
+            <h1 class='h1'>Ship, manage, track, deliver</h1>
+            <br>
+            <ul class="boxes">
+                <li>
+                    <div>
+                        <i class="fa fa-calculator"></i><br><span>RATE & SHIP</span>
+                    </div>
+                </li>
+                <li id="active">
+                    <div>
+                        <i class="fa fa-search-location"></i> <br> <span>TRACK</span>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <i class="fa fa-location-dot"></i><br><span>LOCATIONS</span> 
+                    </div>
+                </li>
+            </ul>
+            <br>
+            <div style="line-height: normal;">
+                <div class="search">
+                    <input id="text" type="text"placeholder="TRACKING ID">
+                    <input id="submit" type="submit" value="TRACK" >
+                </div>
+                <div class="help-text">
+                   <p> MULTIPLE TRACKING NUMBERS | NEED HELP?</p>
+                </div>
+            </div>
+            
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

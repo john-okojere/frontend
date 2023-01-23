@@ -1,0 +1,156 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body{
+    background-image: url('Nigeria-Election-Women-Voting-Niger-Delta-Harcourt.jpg');
+    background-blend-mode: multiply;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    overflow: hidden;
+}
+body .container{
+    max-width: 1000px;
+    justify-content: center;
+    margin: auto;    
+}
+.bg-color{
+background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.94) 12% , rgba(0, 128, 0, 0.794) 137% );
+  width: 100vw;  
+  height: 100vh;  
+}
+nav, .nav-items{
+    justify-content: space-between;
+    display: flex;
+    align-self: center;
+    color: green;
+}
+nav{
+    padding: 30px;
+    height: 15vh;
+    align-items: center;
+}
+.nav-header{
+    color: green;
+}
+.nav-link-item{
+    padding: 0px 10px;
+}
+.nav-right{
+    align-self: center;
+}
+@media screen and (max-width:866px) {
+    .nav-items{
+        display: none;
+    }
+}
+@media screen and (min-width:866px) {
+    .container-box{
+
+    }
+}
+
+.container-box{
+    display: flex;
+    justify-content: center;
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 15px;
+}
+.form-group-item{
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    border-radius: 15px;
+    margin-top: 10px;
+    border: 1px green solid;
+    background-color: rgba(255, 255, 255, 0.669);
+}
+button{
+    padding: 5px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px white solid;
+    justify-content: center;
+    width: 80%;
+    background-color: green;
+    color: white;
+    width: fit-content;
+    padding: 10px 30px;
+}
+#Submit{
+    text-align: center;
+    margin: 20px;
+}
+.flex{
+    display: flex;
+    justify-content: space-between;
+
+}
+.flex input{
+    margin-right: 10px;
+}
+.flex select{
+    margin-left: 10px;
+}
+#Submit button{
+    height: 50px;
+}
+main{
+    height: 75vh;
+    display: flex;
+}
+
+.rect{
+    height: 100px;
+    width: 40%;
+    max-width: 100px;
+    background-color: green;
+}
+#candidates-box{
+    width: 100%;
+    padding: 30px;
+    overflow-y: scroll;
+}
+a{
+    color: inherit;
+    text-decoration: none;
+}
+#dashboard-box{
+    width: 100%;
+}
+
+.form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+  }
+  .form-signin .checkbox {
+    font-weight: 400;
+  }
+  .form-signin .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+  }
+  .form-signin .form-control:focus {
+    z-index: 2;
+  }
+  .form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }

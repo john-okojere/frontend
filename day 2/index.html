@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div>
+        <nav>
+            <h2 class="nav-header">Comment Collector</h2>
+            <div class="nav-item" style="align-items: center;" id="currentDate"></div>
+        </nav>
+    </div>
+    <main>
+        <div>
+            <form>
+                <Textarea placeholder="Enter your Comment" id="commentinput" name="Comment"></Textarea>
+                <a href="#" onclick="Insert()" id="submitinput">Save</a>
+            </form>
+            <div class="comment-list" style="text-align-last: left;padding: 20px;">
+                <h2>Comments</h2>
+                <ul class="list" id="rendered-list">
+                    <li id="Helptext">
+                        <div style="display: flex;">
+                            <div class="detail">
+                                <p>You May Have not made any comment</p>
+                                <small style="float: right;font-size: x-small;" id="currentDate"></small>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-database.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+        const firebaseApp = firebase.initializeApp({
+            apiKey: "AIzaSyBpQ8kKiYW4d5rMYFk7jrEQxwylB4ieX88",
+            authDomain: "javascript-project-1-b9dd4.firebaseapp.com",
+            projectId: "javascript-project-1-b9dd4",
+            storageBucket: "javascript-project-1-b9dd4.appspot.com",
+            messagingSenderId: "763397006952",
+            appId: "1:763397006952:web:8f14722e645f41fe847ddd",
+            databaseURL: "https://javascript-project-1-b9dd4-default-rtdb.firebaseio.com/"
+        });
+        var datebanner = document.getElementById('currentDate');
+        var date = new Date();
+        let day = date.getDate();
+        let month = date.getMonth() + 1;
+        let year = date.getFullYear();
+        let currentDate = `${day}-${month}-${year}`;
+
+        datebanner.append(currentDate)
+
+        function addToList(comment, date, id) {
+            $('#rendered-list').prepend(
+                    `<li id="li-${id}">
+                        <div style="display: flex;position: relative;">
+                            <div class="detail">
+                                <p>${comment}</p>
+                                <small style="float: right;font-size: x-small;">~ ${date}</small>
+                            </div>
+                            <div class="delete" style="position: absolute; right: 0;"><a href="#" onclick = "deleteItem('${id}')"  style="color: red;">Delete</a></div>
+                        </div>
+                    </li>`
+                );
+        }
+        var text = document.getElementById('Helptext');
+        setInterval(1000, function() {
+            if( text.innerHTML == "" ){
+                console.log('cool')
+            }else{
+                console.log('dd')
+            }
+        });
+            firebase.database().ref('comments').once('value',(data)=>{
+                data.forEach(function(snapshot){
+                    var newPost = snapshot.val();
+                    var key = snapshot.key;
+                    var comment = newPost.comment;
+                    var date = newPost.currentDate;
+                    addToList(comment, date, key)
+                })
+            }
+            )
+       
+        function deleteItem(id) {
+            var comment_id = firebase.database().ref('comments/'+ id)
+            comment_id.set(null, (error) => {
+                if (error) {
+                    console.log(error)
+                }else{
+                    cid = document.getElementById('li-'+id)
+                    cid.style.visibility="hidden";
+                    cid.style.display="none";
+                    console.log(cid)
+                    console.log('success')
+                }
+            })
+        }
+        
+        function Insert() {
+            var comment = document.getElementById('commentinput').value;
+            var text = document.getElementById('Helptext');
+            if( comment == ""){
+                $('#Helptext').val('Please input a value');
+            }else{
+                var id = firebase.database().ref('comments/').push({
+                    comment: comment,
+                    currentDate: currentDate
+                }).getKey();
+                text.style.visibility = "hidden"
+                $('#rendered-list').prepend(
+                    `<li  id="li-${id}">
+                        <div style="display: flex;position: relative;">
+                            <div class="detail">
+                                <p>${comment}</p>
+                                <small style="float: right;font-size: x-small;">~ ${currentDate}</small>
+                            </div>
+                            <div class="delete" style="position: absolute; right: 0;"><a href="#" onclick = "deleteItem('${id}')" style="color: red;">Delete</a></div>
+                        </div>
+                    </li>`
+                )
+                $('#commentinput').val('');
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav>
+        <div class="nav-header">
+            LesMeet
+        </div>
+        <div class="nav-items">
+            <div class="nav-link-item">
+                <div class="nav-link"><a href="#" onclick="find()" id="find-btn">Find Meetings</a></div>
+                <div class="nav-link"><a href="#" onclick="create()" id="create-btn">Create Meeting</a></div>
+                <div class="nav-link"><a href="#" onclick="favourite()" id="favourite-btn">Favourite Meetings</a></div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div id="find">
+            <h1>Upcoming Meetings</h1>
+            <br><br>
+            <div class="list" id="meeting-list">
+            </div>
+        </div>
+        <div id="create">
+            <h2>Arrange a Meeting </h2>
+            <br>
+            <div class="form">
+                <input type="text" class="form-input" name="title" placeholder="Enter Meeting Title"><br>
+                <input type="text" class="form-input" name="date" placeholder="Enter Meeting Date (DD/MM/YY)"><br>
+                <input type="text" class="form-input" name="image"
+                    placeholder="Paste the image link for the location."><br>
+                <input type="text" class="form-input" name="address" placeholder="Enter Location's Address"><br>
+                <textarea class="form-input" name="description" cols="30" rows="10"
+                    placeholder="Enter description"></textarea><br>
+                <a href="#" id="post_meeting" class="btn"> Post Meeting</a>
+            </div>
+        </div>
+        <div id="favourite">
+            <h1>Favourites</h1>
+            <br>
+            <div id="f-list" class="list">
+            </div>
+        </div>
+    </main>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-database.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        const firebaseConfig = firebase.initializeApp({
+            apiKey: "AIzaSyCkUrywhKbIAJW01vGa2gZj7tE1t5c9R8k",
+            authDomain: "lesmeet.firebaseapp.com",
+            projectId: "lesmeet",
+            storageBucket: "lesmeet.appspot.com",
+            messagingSenderId: "201594714951",
+            appId: "1:201594714951:web:959bc2625be17c11d1ea62",
+            databaseURL: "https://lesmeet-default-rtdb.firebaseio.com/"
+        });
+        function addToFavouriteList(image, title, date, description, address, key){
+            $('#f-list').prepend(
+            ` <div class="list-item" >
+            <div class="home-image">
+                <div class="list-image" style="height: 100px;background-image:url('${image}')"></div>
+            </div>
+            <div class="home-detail">
+                <div class="detail">
+                    <h3 class="title"  style="text-align: left;">${title} <span class="date">${date}</span></h3>
+                    <p class="description" style="text-align: left;">${description}</p>
+                    <p class="info"> @ <span class="address"> ${address}</span></p>
+                </div>
+            </div>
+        </div>`
+        );
+        $('meeting-event-key').replaceWith('<a href="#" id="f-${key}"><i class="fa-minus fa"></i> favourite</a>')
+    }
+
+        function addToFavourite(id){
+            var dataRef = firebase.database().ref('meetings/'+id).once('value', function(data) {
+                var newM = data.val();
+                var image = newM.image;
+                var title = newM.title;
+                var description = newM.description;
+                var date = newM.date;
+                var address = newM.address;
+                var key = id
+                //every user must have an email
+                firebase.database().ref(`favourite/${key}`).once("value", snapshot => {
+                if (snapshot.exists()){
+                    console.log("exists!");
+                    const email = snapshot.val();
+                }else{
+                    firebase.database().ref('favourite/'+key).set({
+                        key : key,
+                        title: title,
+                        date: date,
+                        address: address,
+                        image: image,
+                        description: description
+                    })
+                    addToFavouriteList(image, title, date, description, address, key)
+                }
+            })
+             
+            });
+            
+        }
+
+        function addToList(image,title,description,date,address,key){
+        $('#meeting-list').prepend(
+            ` <div class="list-item" >
+            <div class="home-image">
+                <div class="list-image" style="height: 100px;background-image:url('${image}')"></div>
+                <div style="margin-top: 10px;" id = "meeting-event-${key}"><a href="#" id="meeting-${key}" onclick="addToFavourite('${key}')" ><i class="fa-add fa"></i> favourite</a></div>
+            </div>
+            <div class="home-detail">
+                <div class="detail">
+                    <h3 class="title"  style="text-align: left;">${title} <span class="date">${date}</span></h3>
+                    <p class="description" style="text-align: left;">${description}</p>
+                    <p class="info"> @ <span class="address"> ${address}</span></p>
+                </div>
+            </div>
+        </div>`
+        )}
+        function home(){
+            firebase.database().ref('meetings/').once('value', (data)=>{
+                data.forEach(function (snapshot) {
+                    var key = snapshot.key;
+                    var newM = snapshot.val()
+                    var image = newM.image;
+                    var title = newM.title;
+                    var description = newM.description;
+                    var date = newM.date;
+                    var address = newM.address;
+                    addToList(image,title,description,date,address, key);
+                });
+            });
+            firebase.database().ref('favourite/').once('value', (data)=>{
+                data.forEach(function (snapshot) {
+                    var key = snapshot.key;
+                    var newM = snapshot.val()
+                    var image = newM.image;
+                    var title = newM.title;
+                    var description = newM.description;
+                    var date = newM.date;
+                    var address = newM.address;
+                    addToFavouriteList(image, title, date, description, address, key);
+
+                });
+            })
+        }
+        setInterval(home(), 1000)
+        $('#post_meeting').click(function (e) {
+            e.preventDefault()
+            var title = $('[name="title"]').val();
+            var date = $('[name="date"]').val();
+            var address = $('[name="address"]').val();
+            var image = $('[name="image"]').val();
+            var description = $('[name="description"]').val();
+
+            if (title != "" && date != "" && address != "" && image != "" && description != "") {
+                var meeting_id = firebase.database().ref('meetings/').push({
+                    title: title,
+                    date: date,
+                    address: address,
+                    image: image,
+                    description: description
+                }).getKey();
+                find();
+                $('#meeting-list').prepend(
+                    ` <div class="list-item" >
+                    <div class="home-image">
+                        <div class="list-image" style="height: 100px;background-image:url('${image}')"></div>
+                        <div style="margin-top: 10px;" id = "meeting-event-${meeting_id}"><a href="#" id="meeting-${meeting_id}" onclick = "addToFavourite('${meeting_id}')" ><i class="fa-add fa"></i> favourite</a></div>
+                    </div>
+                    <div class="home-detail">
+                        <div class="detail">
+                            <h3 class="title"  style="text-align: left;">${title} <span class="date">${date}</span></h3>
+                            <p class="description" style="text-align: left;">${description}</p>
+                            <p class="info"> @ <span class="address"> ${address}</span></p>
+                        </div>
+                    </div>
+                </div>`
+                )
+                $('[name="title"]').val('');
+                $('[name="date"]').val('');
+                $('[name="address"]').val('');
+                $('[name="image"]').val('');
+                $('[name="description"]').val('');
+
+            } else {
+                console.log('no')
+            }
+        })
+
+    </script>
+</body>
+
+</html>

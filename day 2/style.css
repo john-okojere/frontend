@@ -1,0 +1,88 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    color: skyblue;
+    background: linear-gradient(216deg, skyblue 53%,blue 115%);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: black;
+    overflow: hidden;
+}
+nav{
+    padding: 20px;
+    position: relative;
+    display: flex;
+    width: 100vw;
+    text-align: center;
+}
+.nav-header{
+    margin: 10px;
+    font-size: xx-large;
+    width: 50%;
+    font-family: fantasy;
+}
+.nav-item{
+    width: 50%;
+    align-items: center;
+    display: block;
+    align-self: center;
+}
+main{
+    text-align-last: center;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+form{
+    position: absolute;
+    top: 3vh;
+    width: 100%;
+    padding: 20px;
+    max-width: 500px;
+}
+#commentinput{
+    text-align-last: left;
+    height: 100px;
+    width: 100%;
+    border-radius: 15px;
+    padding: 10px;
+}
+#submitinput{
+    display: inline-block;
+    background-color: black;
+    color: white;
+    width: 50%;
+    height: 40px;
+    border: 1px white solid;
+    padding: 10px;
+    border-radius: 10px;
+}
+ul.list{
+    padding: 10px;
+    margin: 0 30px;
+    max-height: 30vh;
+    overflow-y: auto;
+}
+
+ul li{
+    margin: 10px;
+    border: 1px dotted black;
+    padding: 10px;
+    list-style: circle;
+    border-radius: 10px;
+}
+.detail{
+    margin-right: 30px;
+}
+a{
+    text-decoration: none;
+}
