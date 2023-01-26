@@ -19,27 +19,33 @@
                     <h2>Vote<span>Me</span></h2>
                 </div>
                 <div class="nav-items">
-                    
+
                 </div>
+
                 <div class="nav-right">
-                    <a href="#" class="btn btn-success">Start Election</a>
+                    <a href="#" id="time-btn" class="btn btn-success">Start Election</a>
+
+                    <a href="#" class="btn-danger btn" id="timer">
+                        <p id="demo" style="margin: 0;padding: 5px;"></p>
+                    </a>
                 </div>
             </nav>
+<h5>Hello, <span id="usernameview"></span></h5>
             <div id="admin-tabs" class="my-3">
-                
-                    <a href="#" class="nav-link-item" id="c">Candidates</a>
-                
-                    <a href="#" class="nav-link-item" id="f">Register</a>
-                
-                    <a href="#" class="nav-link-item" id="d">Dashboard</a>
-                
-                    <a href="#" class="nav-link-item" id="s">SignIn</a>
-                
-                    <a href="#" class="nav-link-item" onclick="location.reload();" id="l">Logout</a>
+
+                <a href="#" class="nav-link-item" id="c">Candidates</a>
+
+                <a href="#" class="nav-link-item" id="f">Register</a>
+
+                <a href="#" class="nav-link-item" id="d">Dashboard</a>
+
+                <a href="#" class="nav-link-item" id="s">SignIn</a>
+
+                <a href="#" class="nav-link-item" onclick="location.reload();" id="l">Logout</a>
             </div>
             <main>
-                
-          
+
+
                 <div class="container-box" id="form-box">
                     <div class="form-group">
                         <div id="registermessage"></div>
@@ -59,16 +65,27 @@
                         <select class="form-group-item" name="Position" id="">
                             <option value="Chancellor">Chancellor</option>
                             <option value="Vice Chancellor">Vice Chancellor</option>
-                            <option value="Deputy Vic Chancellor">Deputy Vic Chancellor</option>
+                            <option value="Deputy Vice Chancellor">Deputy Vice Chancellor</option>
                         </select>
                         <div class="" id="Submit">
                             <a href="#" id="submitRegistere" class="btn btn-success">Submit & Register</a>
                         </div>
                     </div>
                 </div>
-                <div id="candidates-box" class="row">
-                  
-                  
+                <div id="candidates-box">
+
+                    <h5>Chancellor</h5>
+                    <div id="Chancellor" class="row">
+                    </div>
+                    <h5>Vice Chancellor</h5>
+                    <div id="vice-chancellor" class="row">
+
+                    </div>
+                    <h5> Deputy Vice Chancellor</h5>
+                    <div id="deputy-vice-chancellor" class="row">
+
+                    </div>
+
                 </div>
                 <div id="dashboard-box" style="overflow: scroll;">
                     <table class="table bg-light">
@@ -87,17 +104,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            
-                           
+
+
                         </tbody>
                     </table>
                 </div>
-                <div class="container-box"  id="signin-box">
+                <div class="container-box" id="signin-box">
                     <div class="form-group">
 
-                        <h3 style="text-align: center;"> <a href="#" id="signin-box-btn" >Sign In</a> /  <a href="#" id="signup-box-btn" >Sign Up</a></h3>
-                    <div id="message"></div>
-                    <div id="signin-box-box">
+                        <h3 style="text-align: center;"> <a href="#" id="signin-box-btn">Sign In</a> / <a href="#"
+                                id="signup-box-btn">Sign Up</a></h3>
+                        <div id="message"></div>
+                        <div id="signin-box-box">
                             <input type="email" class="form-group-item" name="email" placeholder="Enter Email">
                             <input type="password" class="form-group-item" name="password" placeholder="Enter Password">
                             <div class="" id="Submit">
@@ -106,14 +124,21 @@
                         </div>
                         <div id="signup-box-box">
                             <input type="email" class="form-group-item" name="remail" placeholder="Enter Email">
-                            <input type="password" class="form-group-item" name="rpassword" placeholder="Enter Password">
-                            <input type="password" class="form-group-item" name="rpassword1" placeholder="Confirm Password">
+                            <input type="password" class="form-group-item" name="rpassword"
+                                placeholder="Enter Password">
+                            <input type="password" class="form-group-item" name="rpassword1"
+                                placeholder="Confirm Password">
                             <div class="" id="Submit">
                                 <a href="#" id="sign-up-btn" class="btn btn-success">Sign Up</a>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div id="time-box" style="align-self: center;" class="form-group">
+                    <input type="datetime-local" class="form-group-item" name="time" id="">
+                    <a href="#" id="submit-time" class="btn btn-danger" style="margin: 10px;">Start Election</a>
+                </div>
+
         </div>
         </main>
     </div>
@@ -127,12 +152,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
-        <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-database.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-auth.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-       
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-auth.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
     <script src="script.js"></script>
 </body>
 
